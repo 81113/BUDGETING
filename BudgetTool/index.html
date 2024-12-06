@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Budget Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Budget Tracker</h1>
+
+        <!-- Income Section -->
+        <div id="income-section">
+            <label for="income">Monthly Income:</label>
+            <input type="number" id="income" placeholder="Enter monthly income" />
+            <button onclick="saveIncome()">Save Income</button>
+        </div>
+
+        <!-- Expense Form Section -->
+        <div id="expense-form">
+            <label for="expense-name">Expense Name:</label>
+            <input type="text" id="expense-name" placeholder="Expense name" />
+            
+            <label for="expense-amount">Amount:</label>
+            <input type="number" id="expense-amount" placeholder="Amount" />
+            
+            <label for="expense-category">Category:</label>
+            <select id="expense-category">
+                <option value="Food">Food</option>
+                <option value="Apartment">Apartment</option>
+                <option value="School">School</option>
+                <option value="Health">Health</option>
+                <option value="Others">Others</option>
+            </select>
+
+            <button onclick="addExpense()">Add Expense</button>
+        </div>
+
+        <!-- Expense List Section -->
+        <h2>Expenses</h2>
+        <ul id="expense-list"></ul>
+
+        <!-- Summary Section -->
+        <div id="summary">
+            <h3>Monthly Summary</h3>
+            <p>Total Income: <span id="total-income">0</span></p>
+            <p>Total Expenses: <span id="total-expenses">0</span></p>
+            <p>Balance: <span id="balance">0</span></p>
+            <button onclick="deleteAllExpenses()">Delete All Expenses</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<link rel="manifest" href="manifest.json">
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+            .then(function(registration) {
+                console.log('Service Worker registered with scope:', registration.scope);
+            })
+            .catch(function(error) {
+                console.log('Service Worker registration failed:', error);
+            });
+    }
+</script>
